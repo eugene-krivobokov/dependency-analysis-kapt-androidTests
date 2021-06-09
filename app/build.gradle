@@ -1,0 +1,48 @@
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    id("kotlin-kapt")
+}
+
+android {
+    compileSdk = 29
+    buildToolsVersion = "29.0.3"
+
+    defaultConfig {
+        applicationId = "ru.app"
+        minSdk = 21
+        targetSdk = 29
+        versionCode = 1
+        versionName = "1.0"
+
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "ru.app.MyTestRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        compose = false
+        viewBinding = false
+        aidl = false
+        renderScript = false
+        shaders = false
+        resValues = true
+    }
+}
+
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.2.0-beta01")
+
+    kaptAndroidTest("com.google.dagger:dagger-compiler:$daggerVersion")
+
+    androidTestImplementation "com.google.dagger:dagger:$daggerVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
